@@ -1,0 +1,27 @@
+<!doctype html>
+{% extends "SBFapp/topbar.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    body {
+        background-color: rgb(255, 242, 230);
+    }
+</style>
+
+<body>
+<div class="row-12 mt-2 bottom-space">
+        <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Leave a Comment</h1>
+        <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+      </div>
+    <div class="row justify-content-center">
+        <div class="col-5 text-left"><br>
+            <form method="post">
+                {% csrf_token %}
+                {{form | crispy}}
+                <br>
+                <button type="submit" style="background-color: rgb(35, 45, 75);" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

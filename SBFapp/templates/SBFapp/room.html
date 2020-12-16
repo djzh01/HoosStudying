@@ -1,0 +1,121 @@
+<!-- chat/templates/chat/room.html -->
+<!--
+*  REFERENCES
+*  Title: <flask-twilio-video>
+*  Author: <Miguel Grinberg>
+*  Date: <2020-04-30>
+*  Code version: <Latest>
+*  URL: <https://github.com/miguelgrinberg/flask-twilio-video>
+*  Software License: <MIT License>
+*
+*  Title: <Channels tutorial>
+*  Author: <Carlton Gibson>
+*  Date: <2020-10-23>
+*  Code version: <3.0.0>
+*  URL: <https://github.com/django/channels/tree/master/docs/tutorial>
+*  Software License: <GNU License>
+-->
+{% extends "SBFapp/topbar.html" %}
+{% load static %}
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'SBFapp/style.css' %}?20201123">
+</head>
+
+{% block content %}
+<div>
+    <h1 class="text-center" style="font-family:copperplate;">Welcome to ChatVid Room: {{user.profile.room}} </h1><hr>
+
+
+          <form class=" row justify-content-center">
+              <label for="username" class="mr-2">Name:</label>
+              <input type="text" name=”username” id="username">
+              <button id="join_leave">Join Call</button>
+              
+          </form>
+
+          
+         <p class="row justify-content-center" id="count"></p>
+
+
+
+      
+          <div id="container" class="container">
+             <div id="local" class="participant"><div></div><div>Me</div></div>
+         </div>
+
+  
+
+          <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+          <script src="{% static 'SBFapp/app.js' %}"></script>
+
+    <div class="row justify-content-center">
+    <textarea id="chat-log" cols="114" rows="20"></textarea><br>
+    </div>
+    <div class="row justify-content-center mt-3">
+    <input class="mr-2" id="chat-message-input" type="text" size="108"><br>
+    <input id="chat-message-submit" type="button" value="Send">
+    {{ room_name|json_script:"room-name" }}
+    <script>
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        
+        if (window.location.protocol == "https:") {
+          var ws_scheme = "wss://";
+        } else {
+          var ws_scheme = "ws://"
+        };
+
+        const chatSocket = new WebSocket(
+            ws_scheme
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+    </div>
+  
+    <HR>
+    <div>
+        <h2
+        style="color:red;" class="mt-5;"smargin-bottom:-10px>!!!NOTICE:</h2>
+            <p style="color:red;" class="mt-5;"smargin-bottom:-20px>
+                <br>* For Twilio video conference to work successfully, usage of Firefox and Safari is recommended due to certain limitation of Twilio compatibility.
+                <br>* If still not working, refreshing the page or relogin is recommended to reload the funtion.
+                <br>* Details can be found here: https://www.twilio.com/docs/voice/client/browser-compatibility
+                <br>* Live chat platform is provided for additional communication.
+            </p>
+    </div>
+
+</body>
+{% endblock %}
+</html>

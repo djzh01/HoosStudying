@@ -1,0 +1,60 @@
+<!doctype html>
+{% extends "SBFapp/topbar.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    body {
+        background-color: rgb(255, 242, 230);
+    }
+</style>
+
+<body>
+    <div class="row-12 mt-2 bottom-space">
+        <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Community Posts</h1>
+        <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+      </div>
+    <div class="row justify-content-center top-space">
+        <div class="text-left col-5">
+            <div class="row">
+                <div class="col-8">
+                    <h1>{{post.post_title | capfirst}}
+                </div>
+                {% if post.post_type == 'find'%}
+                <div class="col-4">
+                    <a class='btn btn-secondary' style="background-color: rgb(35, 45, 75);" href="{% url 'SBFapp:join_study_buddy' pk=post.pk %}">Request as Study Buddy</a>
+                    <br>
+                </div>
+                {% endif %}
+                </h1>
+            </div>
+            <h4 class="ml-3">{{post.post_content}}</h4>
+            Created by: {{post.user | capfirst}} at {{post.created_at}}<br>
+            <hr>
+
+            <h3><a class="btn btn-sm btn-dark btn-block" style="background-color: rgb(35, 45, 75);"
+                    href="{% url 'SBFapp:comment' pk=post.pk%}">Leave a Comment</a>
+            </h3>
+            <form method="post">
+                {% csrf_token %}
+                {{form | crispy}}
+                <!--            <button type="submit" class="btn btn-dark btn-sm">Submit</button>-->
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <ul>
+            {% for comment in post.comments.all %}
+            <li class="row justify-content-center bottom-space">
+                <div class="text-left col-12">
+                    <h4>{{ comment.text | linebreaks }}</h4>
+                    Posted by {{ comment.user }} at {{ comment.created_at }}
+                </div>
+            </li>
+            {% empty %}
+            No comments yet
+
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+{% endblock %}

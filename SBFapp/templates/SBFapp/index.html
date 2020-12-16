@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "SBFapp/topbar.html" %}
+
+{% load socialaccount %}
+{% load static %}
+
+{% block content %}
+
+<!-- Content -->
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'SBFapp/style.css' %}?20201122">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Study Buddy Finder</title>
+</head>
+<style>
+    body {
+        background-color: rgb(255, 242, 230);
+    }
+</style>
+<img style="opacity:75%;" alt="rotunda" src="{% static 'SBFapp/rotunda.jpg' %}">
+<div class="text-center text-white"
+    style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%); font-size: 5rem; text-shadow: 2px 2px #000000">
+    <strong>
+        <br> HOOS STUDYING?</strong></div>
+
+{% if user.is_authenticated %}
+<h1 class="text-center mt-5">A community forum for UVA students. <br> Connect with other Hoos to get help in your
+    hardest classes!</h1>
+<div class="row justify-content-center home-bar mb-5">
+    <div class="col-3 home-button text-center" id="schedule-button"><a style="color: rgb(35, 45, 75); height:100%"
+            href="{% url 'SBFapp:schedule' %}">
+            <h1>Schedule</h1>
+            <br>Add, change, and keep track of your monthly schedule!
+        </a></div>
+    <div class="col-1"></div>
+    <div class="col-3 home-button text-center" id="community-button"><a style="color: rgb(35, 45, 75);"
+            href="{% url 'SBFapp:community' %}">
+            <h1>Community</h1>
+            <br>Make help posts or find new study buddies!
+        </a></div>
+    <div class="col-1"></div>
+    <div class="col-3 home-button text-center" id="group-button"><a style="color: rgb(35, 45, 75);"
+            href="{% url 'SBFapp:groupslist' %}">
+            <h1>Groups</h1>
+            <br>Find and manage your study groups!
+        </a></div>
+</div>
+{% else %}
+<div class="pre-login text-center">
+    <h1 class="bottom-space"><b>Step 1</b></h1>
+    <h3 class="bottom-space">Log in through Google</h3>
+    <h1 class="bottom-space"><b>Step 2</b></h1>
+    <h3 class="bottom-space">Set up your profile in the top-right dropdown menu</h3>
+    <h1 class="bottom-space"><b>Step 3</b></h1>
+    <h3 class="bottom-space">Connect and find new study partners!</h3>
+</div>
+{% endif %}
+{% endblock%}
+
+
+</html>

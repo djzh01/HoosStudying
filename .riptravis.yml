@@ -1,0 +1,21 @@
+language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements.txt
+services:
+- postgresql
+before_script:
+- psql -c 'create database test_db;' -U postgres
+- psql -U postgres -c "ALTER USER postgres CREATEDB;"
+script:
+- python manage.py makemigrations
+- python manage.py migrate
+- python manage.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: xsVafaK71utmbtx82PRGiS9LctJiyWeKWlIQ42OrWSpQCGsBKwNyJzBK1J3XFyGjuCeHBIahLEofM4xJhANPChUnmBSTBeYcdwK52d3UkXMf3BYVRqCH8PO07D8ziUpXEgD01q+JG867YWkpOPeXudHbjdVZZot7pgcBTINHOIl27pvbjHEW1vdqXKSP41iTlwE7UxkelhfOG4rvbRcZcSNVc937DO3usKDjzu0GmxLOTcUkf2MkcBy7qofQn9PkYjc4JPGNKsmw8JzuReYTy9199HpueicyYCd78N+Sp2EIP9kI3EJBycpbrsQFclJ2lchafiq3X/wiF2kYl3OlED9ocL0U1HMGd0VokAD1NTVAf7/7a/6Dt1VX/OL6pQV64FkZEFLPsd/eC7hT02Gn0nrN/T9MX85A07hJS+qGqVxWN+lzm20V6uJLaXj0D2pPfSOLvkl4Z0nrD1cA0UWGBS992gsiVQzmJ6IW1h7sMNj8miF/JhYXiOAPfXVsxKDKj80YBdLcsmpxOvA+66lYevb3gHglj55HUq7+E56QflkA91uBUy34KHTW2MA9KzVymqJzCtnMQjBLR6kYq6JzaxM+ycwf18lrO59st8JEg96gPn/iiaD3JIB1blxismnd/s2767T//cOZQ+v+eYadoQvy6jRoA/NMemmgG1wf/go=
+  app: sbf2-05
+  on:
+    repo: uva-cs3240-f20/project-2-05

@@ -1,0 +1,28 @@
+<!doctype html>
+{% extends "SBFapp/topbar.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+  body {
+    background-color: rgb(255, 242, 230);
+  }
+</style>
+<body>
+  <div class="row-12 mt-2 bottom-space">
+          <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Create a Group</h1>
+          <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+        </div>
+  <div class="row justify-content-center">
+    <form class="col-5" method="post">
+      <h1>Create a Group</h1>
+      {% csrf_token %}
+      {{form | crispy}}
+      <br>
+      <h4 style="color:red;">The group name should not contain spaces or non-alphanumeric characters (except for
+        underscores)</h4>
+
+      <button class="btn btn-secondary" style="background-color:rgb(35, 45, 75);" type="submit">Create Group</button>
+    </form>
+  </div>
+</body>
+{% endblock %}

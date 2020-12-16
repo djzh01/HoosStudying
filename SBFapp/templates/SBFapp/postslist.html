@@ -1,0 +1,53 @@
+<!doctype html>
+{% extends "SBFapp/topbar.html" %}
+{% block content %}
+<style>
+    body {
+        background-color: rgb(255, 242, 230);
+    }
+</style>
+<body>
+    <div class="row-12 mt-2 bottom-space">
+        <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Community Posts</h1>
+        <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+      </div>
+
+
+<div class="row justify-content-center">
+    <!--<div class="row justify-content-center text-white bg-dark "> -->
+<div class="col-5">
+    <div class="row justify-content-center">
+        <ul class="col-12">
+            {% for object in latest_post_list %}
+            <li class="justify-content-start row mb-2 card bg-dark">
+                <a class="btn text-white text-left w-100 p-0" href="{{object.id}}">
+                    <div class="card-header">Posted by {{ object.user | capfirst}}</div>
+                    <h1 class="pl-3 pt-3">{{ object.post_title | capfirst}}</h1>
+                    <p class="pl-3">{{ object.post_content }}</p>
+                </a>
+            </li>
+            {% empty %}
+            <li> Be the first post! </li>
+            {% endfor %}
+        </ul>
+<!--        </div>-->
+    </div>
+</div>
+<div class="col-3 bg-dark text-white text-center left-space h-50 card">
+    <h2 class="text-white top-space">Change Posts</h2>
+    <form method="get">
+    <div class="row justify-content-center">
+        <div class="button-sidebar controls btn-group-vertical" role="group">
+            <button type="submit" class="btn btn-light btn-lg btn-block top-space" name="post_type" value="">View All</button>
+            <button class="btn btn-light btn-lg btn-block top-space" name="post_type" value="help">Help Requests</button>
+            <button class="btn btn-light btn-lg btn-block top-space" name="post_type" value="find">Study Buddy Requests</button>
+        </div>
+    </div>
+        </form>
+    <div class="row justify-content-center top-space mb-5">
+        <a class="btn btn-lg btn-secondary" href="{% url 'SBFapp:post_form' %}">Create Post</a>
+    </div>
+</div>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "SBFapp/topbar.html" %}
+
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    background-color: rgb(255, 242, 230);
+  }
+</style>
+<div class="row justify-content-md-center">
+
+  <div class="row">
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" class="btn btn-secondary btn-lg" style="background-color:rgb(35, 45, 75);" value="Update">
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+</html>

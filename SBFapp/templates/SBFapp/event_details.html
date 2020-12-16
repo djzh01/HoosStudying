@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "SBFapp/topbar.html" %}
+
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+<style>
+    body {
+        background-color: rgb(255, 242, 230);
+    }
+  </style>
+<div class="row-12 mt-2 bottom-space">
+  <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Calendar</h1>
+  <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+<div class="row justify-content-md-center">
+    <div class="col-7">
+        {{ calendar }}
+    </div>
+    <div class="col-5 schedule-right justify-content-center">
+        <h1 class="header">{{ event.event_name | capfirst }}</h1>
+        <h2> {{event.event_description | capfirst}}</h2>
+        <h2> Date: {{event.event_date}}</h2>
+        <h2> Time: {{event.event_start_time}} - {{event.event_end_time}}</h2>
+        {% if event.days|length != 0 %}
+        <h2> Repeat: {{ event.days }}</h2>
+        {% endif %}
+        <a class="btn btn-lg btn-secondary" style="background-color:rgb(35, 45, 75);" href="{% url 'SBFapp:event_edit' event.id %}">Edit Event</a>
+        <a class="btn btn-lg btn-secondary" style="background-color:rgb(229, 114, 0);" href="{% url 'SBFapp:event_delete' event.id %}">Delete Event</a>
+    </div>
+</div>
+
+{% endblock content%}

@@ -1,0 +1,62 @@
+<!doctype html>
+{% extends "SBFapp/topbar.html" %}
+
+{% block content %}
+<style>
+    body {
+        background-color: rgb(255, 242, 230);
+    }
+</style>
+
+<body>
+    <div class="row-12 mt-2 bottom-space">
+            <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Groups</h1>
+            <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+          </div>
+    <div class="row justify-content-center">
+        <div class="text-left col-6 mt-5 pl-5">
+            <h1>{{object.group_name | capfirst}}</h1>
+            <div class="pl-4">{{object.group_descr}}</div>
+            <hr>
+            <a class="btn btn-secondary" style="background-color:rgb(35, 45, 75);" href="{% url 'SBFapp:group_add' pk=object.pk %}">Join Group</a>
+            <a class="btn btn-secondary" style="background-color:rgb(35, 45, 75);" href="/chat/{{object.group_name}}/">Join Chat Room</a><br>
+            <div class="pt-2 pb-2"><strong>Group members:</strong></div>
+            {{object.user | capfirst}} (Leader) <br>
+            {% for member in object.list_users.all %}
+            <li>{{member | capfirst}}</li>
+            {% endfor %}
+            <!--<form action="#" method="get">
+                <input type="submit" class="btn btn-light" value="Join Group" name="mybtn">
+            </form>-->
+
+            {% if object.is_owner %}
+            {% else %}
+            <a class="btn btn-lg btn-secondary mt-3" style="background-color:rgb(229, 114, 0);" href="{% url 'SBFapp:edit_group' object.pk %}">Edit Group</a>
+            {% endif %}
+        </div>
+        <div class="col-3 text-center left-space h-50">
+            <h1>My Groups</h1>
+            <div class="col-12 bg-dark text-white card pt-5">
+                <div class="row justify-content-center bottom-space">
+                    <a class="btn btn-lg btn-secondary" href="{% url 'SBFapp:group_form' %}">Create Group</a>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="button-sidebar controls">
+                        {% for group in private_list %}
+                        <li class="justify-content-start mx-2 mb-2 card">
+                            <a class="btn text-left w-100 p-0" href="{% url 'SBFapp:group' group.id %}">
+                                <div class="card-header">Owner: {{ group.user | capfirst}}</div>
+                                <h1 class="pl-3 pt-3">{{ group.group_name | capfirst}}</h1>
+                                <p class="pl-3">{{ group.group_descr }}</p>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

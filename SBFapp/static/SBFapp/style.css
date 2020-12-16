@@ -1,0 +1,202 @@
+/**
+ /***************************************************************************************
+ *  REFERENCES
+ *  Title: <flask-twilio-video>
+ *  Author: <Miguel Grinberg>
+ *  Date: <2020-04-30>
+ *  Code version: <Latest>
+ *  URL: <https://github.com/miguelgrinberg/flask-twilio-video>
+ *  Software License: <MIT License>
+ *
+ *
+ *
+ ***************************************************************************************/
+
+a:hover{
+    text-decoration: none;
+}
+
+#profile{
+    position: absolute;
+    margin-right: 2.5%;
+    right: 0px;
+}
+
+.dropdown-menu {
+    left: revert;
+    right: 0px;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+.schedule-right{
+    margin-top:10vh;
+}
+
+#create-event{
+    height:min-content;
+}
+.calendar {
+  margin: 10vh;
+  font-size: 13px;
+}
+
+.calendar ul{
+    padding: 0;
+    font-weight: initial;
+    font-size: 75%;
+    text-transform: capitalize;
+}
+
+.calendar ul li{
+    border: blue;
+    border-width: 2px;
+    border-radius: 5%;
+    border-style: solid;
+    margin: 0px 0.5rem 0.3rem 2px;
+}
+
+.calendar ul li:hover{
+    background-color: #e6f2ff;
+}
+.calendar tr, .calendar td {
+  border: 1px solid black;
+}
+
+.calendar th {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.calendar td {
+  width: 10vw;
+  height: 10vh;
+  padding: 0px 0px 0px 5px;
+}
+
+.month {
+  font-size: 25px;
+}
+
+.date {
+  font-size: 16px;
+}
+
+.mon, .tue, .wed, .thu, .fri, .sat, .sun {
+    font-weight: bold;
+}
+
+.controls{
+    display: flex;
+    flex-direction: column;
+}
+
+#id_days_1, #id_days_2, #id_days_3, #id_days_4, #id_days_5, #id_days_6, #id_days_7{
+    margin-right: 0.5rem;
+}
+
+ul {
+  height: 100%;
+  padding: 0px 5px 0px 20px;
+  list-style: none
+}
+
+.pre-login{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.bottom-space{
+    margin-bottom: 2rem;
+}
+.top-space{
+    margin-top: 2rem;
+}
+.left-space{
+    margin-left: 2rem;
+}
+.sidebar{
+    height: 50vh;
+}
+.button-sidebar{
+    width: 100%;
+    margin: 0 2rem;
+}
+#postlist{
+    margin-left: 30%;
+}
+.border-outline:hover{
+    border: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5%;
+}
+.home-button{
+    padding: 20vh 0;
+    margin-top: 15vh;
+}
+#schedule-button{
+    border: blue;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5%;
+}
+#community-button{
+    border: green;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5%;
+}
+#group-button{
+    border: orange;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5%;
+}
+#schedule-button:hover{
+    border: darkblue;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 5%;
+}
+#community-button:hover{
+    border: darkgreen;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 5%;
+}
+#group-button:hover{
+    border: darkorange;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 5%;
+}
+
+.container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.participant {
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+.participant div {
+    text-align: center;
+}
+.participant div:first-child {
+    width: 290px;
+    height: 230px;
+    background-color: #ccc;
+    border: 1px solid black;
+}
+.participant video {
+    width: 100%;
+    height: 100%;
+}
+*{
+
+}

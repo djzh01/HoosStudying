@@ -1,0 +1,62 @@
+<!doctype html>
+{% extends "SBFapp/topbar.html" %}
+{% block content %}
+<style>
+    body {
+        background-color: rgb(255, 242, 230);
+    }
+</style>
+<body>
+    <div class="row-12 mt-2 bottom-space">
+        <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Groups</h1>
+        <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+      </div>
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <div class="row justify-content-center">
+                <ul class="col-12">
+                    <h1>Public Groups</h1>
+                    {% for object in latest_groups_list %}
+                        {% if object.private == False %}
+                        <li class="justify-content-start row mb-2 card bg-dark">
+                            <a class="btn text-white text-left w-100 p-0" href="{{object.id}}">
+                                <div class="card-header">Owner: {{ object.user | capfirst}}</div>
+                                <h1 class="pl-3 pt-3" >{{ object.group_name | capfirst}}</h1>
+                                <p class="pl-3" >{{ object.group_descr }}</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% empty %}
+                    <li> Be the first group! </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-3 text-center left-space h-50">
+            <h1>My Groups</h1>
+            <div class="col-12 bg-dark text-white card pt-5">
+                <div class="row justify-content-center mb-3">
+                    <a class="btn btn-lg btn-secondary" href="{% url 'SBFapp:group_form' %}">Create Group</a>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="button-sidebar controls">
+                        {% for group in private_list %}
+                            <li class="justify-content-start mx-2 mb-2 card">
+                                <a class="btn text-left w-100 p-0" href="{% url 'SBFapp:group' group.id %}">
+                                <div class="card-header">Owner: {{ group.user | capfirst}}</div>
+                                <h1 class="pl-3 pt-3" >{{ group.group_name | capfirst}}</h1>
+                                <p class="pl-3" >{{ group.group_descr }}</p>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+

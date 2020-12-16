@@ -1,0 +1,127 @@
+{% extends "SBFapp/topbar.html" %}
+<!-- {% load static %} -->
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+
+
+{% block content %}
+
+<!-- <p style="text-transform:capitalize;"> Welcome to {{ user.first_name }}'s Profile!</p> -->
+<style>
+  body {
+      background-color: rgb(255, 242, 230);
+  }
+</style>
+{% if user.is_authenticated %}
+<div class="row-12 mt-2 bottom-space">
+  <h1 style="font-size: 300%; color: rgb(35, 45, 75)" class="ml-3">Profile</h1>
+  <hr style="width: 100%; color: rgb(35, 45, 75); height: 1px; background-color:rgb(35, 45, 75);" />
+</div>
+<div class="col-12">
+  <div class="card-body text-left">
+    <h4 style="text-transform:capitalize;" class="mb-1">{{user.username}} {{user.last_name}}</h4>
+    <p class="text-muted">{{user.email}}</p>
+  </div>
+</div>
+
+<div class="col-12">
+  <div class="card-body">
+    <h4 class="border-bottom ml-0">Information</h4>
+    <div class="row">
+      <div class="col-4 text-left mt-3 ml-4">
+        <strong>Major:</strong><span class="ml-2"></span>
+        <p class="text-muted mb-2 font-13">{{user.profile.major}}</span></p>
+        <strong>School Year:</strong> <span class="ml-2 "></span>
+        <p class="text-muted mb-2 font-13">{{user.profile.year}}</span>
+        </p>
+      </div>
+      <div class="col-7 text-left mt-3 ml-4">
+        <strong>Preferred Group Size:</strong> <span class="ml-2">
+          <p class="text-muted mb-1 font-13">{{user.profile.max_group_size}}
+        </span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row ml-4 mt-3">
+        <a href="/userprofile/edit/">
+          <button class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i>
+            Edit Profile
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <h1>Video Conference</h1>
+          <form>
+              <label for="username">Name: </label>
+              <input type="text" name=”username” id="username">
+              <button id="join_leave">Join call</button>
+          </form>
+          <p id="count"></p>
+          <div id="container" class="container">
+              <div id="local" class="participant"><div></div><div>Me</div></div>
+          </div>
+
+          <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+          <script src="{% static "SBFapp/app.js" %}"></script> -->
+<!-- more participants will be added dynamically here -->
+
+
+
+
+
+<!-- <title>Chat Rooms</title>
+        </head>
+        <body>
+            What chat room would you like to enter?<br>
+            <input id="room-name-input" type="text" size="100"><br>
+            <input id="room-name-submit" type="button" value="Enter">
+
+            <script>
+                document.querySelector('#room-name-input').focus();
+                document.querySelector('#room-name-input').onkeyup = function(e) {
+                    if (e.keyCode === 13) {  // enter, return
+                        document.querySelector('#room-name-submit').click();
+                    }
+                };
+
+                document.querySelector('#room-name-submit').onclick = function(e) {
+                    var roomName = document.querySelector('#room-name-input').value;
+                    window.location.pathname = '/chat/' + roomName + '/';
+                };
+            </script>-->
+
+<!-- <p class="text-muted mb-1 font-13"><strong> Group Members </strong> <span class="ml-2"> ....Coming Soon!....</span></p>
+          <p class="text-muted mb-1 font-13"><strong> Study Session </strong> <span class="ml-2"> ....Coming Soon!....</span></p> -->
+
+<!-- end card-box -->
+
+<!-- <button href="/userprofile/edit/" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i>
+                Edit Profile
+              </button> -->
+<!-- end col -->
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="card hovercard">
+            <div class="cardheader">
+            </div>
+            <div class="avatar">
+                <img alt="" src="http://lorempixel.com/100/100/people/9/">
+            </div>
+            <div class="info">
+                <div class="desc">{{ user.profile.major }}</div>
+                <div class="desc">{{ user.profile.year }}</div>
+                <div class="desc">{{ user.profile.max_group_size }}</div>
+            </div>
+        </div>
+    </div>
+</div> -->
+{% endif %}
+{% endblock content %}
