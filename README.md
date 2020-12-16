@@ -1,4 +1,4 @@
-# project-2-05
+# Hoos Studying?
 
 To launch application, complete the following:
 
